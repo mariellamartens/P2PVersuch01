@@ -11,11 +11,19 @@ namespace P2PVersuch01
     {
         public void senden(string ipAdresse, string nachricht, int port)
         {
-            //evtl im try catch block
+            //erstelle TcpClient zum verschicken der Nachricht
             TcpClient client = new TcpClient(ipAdresse, port);
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(nachricht); //Nachricht soll als ByteArray vorliegen
+
+            //Nachricht soll als ByteArray vorliegen
+            Byte[] data = System.Text.Encoding.ASCII.GetBytes(nachricht); 
+
+            //NetworkStream erstellen um ihn zu beschreiben zu können
             NetworkStream stream = client.GetStream();
-            stream.Write(data, 0, data.Length); //nachricht auf den Datenbus schreiben
+
+            //nachricht auf den Datenbus schreiben
+            stream.Write(data, 0, data.Length); 
+
+            //gesendete Nachricht nochmal auf Konsole ausgeben
             Console.WriteLine("ich: {0}", nachricht);
             stream.Close();
             client.Close();
