@@ -16,7 +16,7 @@ namespace P2PVersuch01
             Byte[] data = System.Text.Encoding.ASCII.GetBytes(nachricht); //Nachricht soll als ByteArray vorliegen
             NetworkStream stream = client.GetStream();
             stream.Write(data, 0, data.Length); //nachricht auf den Datenbus schreiben
-            Console.WriteLine("gesendet: {0}", nachricht);
+            Console.WriteLine("ich: {0}", nachricht);
             stream.Close();
             client.Close();
         }

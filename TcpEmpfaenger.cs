@@ -17,16 +17,17 @@ namespace P2PVersuch01
             string nachricht = null;
             while (true)
             {
-                Console.WriteLine("Warten auf Verbindung...");
+                empfaenger.Start();
+                //Console.WriteLine("Warten auf Verbindung...");
                 TcpClient client = empfaenger.AcceptTcpClient();
-                Console.WriteLine("Verbunden!");
+                //Console.WriteLine("Verbunden!");
                 nachricht = null;
                 NetworkStream stream = client.GetStream();
                 int i;
                 while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                 {
                     nachricht = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                    Console.WriteLine("empfangen: {0}", nachricht);
+                    Console.WriteLine("Freund: {0}", nachricht);
                 }
                 client.Close();
                 empfaenger.Stop();
